@@ -8,6 +8,7 @@ import asyncHandler from 'express-async-handler';
 // Types
 interface CropInput {
   name: string;
+  variety:string
   plantingDate: Date;
   harvestDate?: Date;
   status: string;
@@ -15,7 +16,8 @@ interface CropInput {
 
 // Create Crop
 export const createCrop = asyncHandler(async (req: Request, res: Response) => {
-  const { name, plantingDate, status } = req.body as CropInput;
+  const { name, plantingDate, variety, status } = req.body as CropInput;
+
 
   if (!name || !plantingDate || !status) {
     throw new Error('Missing required fields: name, plantingDate, or status');
@@ -23,6 +25,7 @@ export const createCrop = asyncHandler(async (req: Request, res: Response) => {
 
   const crop = new Crop({
     name,
+    variety,
     plantingDate: new Date(plantingDate),
     harvestDate: req.body.harvestDate ? new Date(req.body.harvestDate) : undefined,
     status,
