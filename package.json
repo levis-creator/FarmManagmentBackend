@@ -7,7 +7,7 @@
     "start": "node dist/server.js",
     "build": "tsc",
     "dev": "nodemon src/server.ts",
-    "vercel-build": "npm run build",
+    "vercel-build": "npm install typescript && npm run build",
     "lint": "eslint . --ext .ts --fix"
   },
   "keywords": [],
